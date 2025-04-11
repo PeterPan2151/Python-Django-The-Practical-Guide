@@ -15,19 +15,16 @@ monthly_challenges = {
     'september': 'save money',
     'octuber': 'save more money',
     'november': 'keep saving money',
-    'december': 'almost ther, more money'
+    'december': None
 }
 
 # Create your views here.
 def home(request):
-    list_items = ''
     months = list(monthly_challenges.keys())
 
-    for month in months:
-        month_path = reverse('month-challenge', args=[month])
-        list_items +=f'<li><a href="{month_path}">{month.capitalize()}</a></li>'
-    response_data = f'<ul>{list_items}</ul>'
-    return HttpResponse(response_data)
+    return render(request, 'challenges/index.html', {
+        'months': months
+    })
 
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys())
@@ -47,5 +44,6 @@ def monthly_challenge(request, month):
             'month': month
         })
     except:
-        return HttpResponseNotFound('<h1>This month is not supported</h1>')
+        return HttpResponseNotFound('<h1>Thihh  s month is not supported</h1>')
     
+
